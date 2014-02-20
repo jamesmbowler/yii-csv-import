@@ -1,0 +1,58 @@
+This extension allows the user to import data from csv.
+
+Steps to set up:
+
+1. Model Behavior. Add something like the below (with all your data) into your Model.
+
+public function behaviors() {
+    return array(
+        'import' => array(
+            'class' => 'ext.import.behaviors.ImportBehavior',
+            //name of model
+            'model'=>'Deals',
+            //name of the controller
+            'controller'=>'Deals',
+            'fields'=>array(
+                'title'=>array('displayName'=>'Title', 'sample'=>'Oranges'),
+                'itemName'=>array('displayName'=>'Item Name', 'sample'=>'Oranges'),
+                'price'=>array('displayName'=>'Price', 'sample'=>'4 for $1'),
+                'description'=>array('displayName'=>'Description', 'sample'=>'really good oranges'),
+            ),
+            //url that the user is returned to after successful import
+            'returnUrl'=> '/deals/index',
+            //the "title" field of the model
+            'titleField'=> 'title',
+            //do you want the user to see the data in form view
+            'showImportForm'=> false,
+            //only used if "showImportForm" is set to true
+            //the view that must exist in the model's view folder
+            'importView'=>'show_import_stores_ext'
+        ),
+    );
+}
+
+2. Add actions to Controller. Make sure to include your correct Model name.
+
+public function actions()
+{
+    return array(
+        'import'=>array('class'=>'ext.import.components.ImportModels', 'model'=>'Deals'),
+        'template'=>array('class'=>'ext.import.components.ImportTemplate', 'model'=>'Deals')
+    );
+}
+
+3. Direct your user to the import url. In my example case, it's "deals/import".
+
+4. If needed, you can add a method named onBeforeShowForm to your Model class. If you 
+have this method, it will be called, allowing you to do some preprocessing of the data.
+It's called like this:
+
+public function onBeforeShowForm($model)
+
+This is called for each csv row, or $model, having been populated with the row of data
+in the csv.
+
+Another "Event" is "afterImport". It's called after the import, and all imported model id's
+are passed to it, in array form. It's called like this:
+
+public function afterImport($modelIds)
