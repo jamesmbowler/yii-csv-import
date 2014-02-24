@@ -2,7 +2,18 @@ This extension allows the user to import data from csv.
 
 Steps to set up:
 
-1. Model Behavior. Add something like the below (with all your data) into your Model.
+1. Add module to protected/config/main.php, in modules. Like this:
+
+ 'modules'=>array(
+        'import'=>array(
+             'class'=>'ext.import.ImportModule',
+             'onAfterImport' => array('ImportEvent', 'onAfterImport'),
+             'onBeforeShowForm' => array('ImportEvent', 'onBeforeShowForm'),
+        
+        ),
+	)
+
+2. Model Behavior. Add something like the below (with all your data) into your Model.
 
 public function behaviors() {
     return array(
@@ -31,7 +42,7 @@ public function behaviors() {
     );
 }
 
-2. Add actions to Controller. Make sure to include your correct Model name.
+3. Add actions to Controller. Make sure to include your correct Model name.
 
 public function actions()
 {
@@ -41,9 +52,9 @@ public function actions()
     );
 }
 
-3. Direct your user to the import url. In my example case, it's "deals/import".
+4. Direct your user to the import url. In my example case, it's "deals/import".
 
-4. If needed, you can add a method named onBeforeShowForm to your Model class. If you 
+5. If needed, you can add a method named onBeforeShowForm to your Model class. If you 
 have this method, it will be called, allowing you to do some preprocessing of the data.
 It's called like this:
 
