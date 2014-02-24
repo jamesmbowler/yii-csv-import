@@ -276,21 +276,4 @@ class ImportController extends Controller
 	        }
 		}
 	}
-	
-	protected function performTabularAjaxValidation()
-	{
-        if(isset($_POST[$this->module->model]))
-        {
-            foreach($_POST[$this->module->model] as $deal)
-            {
-                $models[$deal] = new Deals;
-            }
-    
-            if(isset($_POST['ajax']) && $_POST['ajax']===strtolower($this->module->model).'-import')
-            {
-                echo CActiveForm::validateTabular($models);
-                Yii::app()->end();
-            }
-        }
-	}
 }

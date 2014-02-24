@@ -20,7 +20,7 @@ class ImportTemplate extends CAction
 	{
 	    $m = new $this->model;
 	    header("Content-type:text/csv");
-        header("Content-Disposition:attachment");  
+        header("Content-Disposition:attachment; filename='".$model."-import-template.csv'");  
         $out = $m->import->template;
         
         echo $out;
