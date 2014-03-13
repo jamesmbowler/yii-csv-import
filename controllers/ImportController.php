@@ -82,7 +82,7 @@ class ImportController extends Controller
                        ".implode(',',$diff)."</b>"; 
                         
                         Yii::app()->user->setFlash('warning', $error);
-                        $this->redirect(array('/'.strtolower($model[$i]->import->controller).
+                        $this->redirect(array('/'.$model[$i]->import->controller.
                             '/import'));
                   
 				    }
@@ -162,7 +162,7 @@ class ImportController extends Controller
 		{
 		    $msg = '';
 		    foreach($saved as $k=>$v){
-                $msg.= "<a target='_blank' href='/".strtolower($controller)."/view/$k'>$v</a><br>";
+                $msg.= "<a target='_blank' href='/".$controller."/view/$k'>$v</a><br>";
             }
 		    Yii::app()->user->setFlash('success', 
 		    '<strong>'.count($saved).' Records saved.</strong><br>'.$msg);
@@ -193,7 +193,7 @@ class ImportController extends Controller
                     //views folder
                     //check to see if view exists
                     
-                    if(!is_readable(Yii::app()->basePath.'/views/'.strtolower($model->import->controller).'/'.$model->import->importView.'.php'))
+                    if(!is_readable(Yii::app()->basePath.'/views/'.$model->import->controller.'/'.$model->import->importView.'.php'))
                     {
                         Throw new Exception('View '.$model->import->importView .' does not exist.');
                     }
@@ -255,7 +255,7 @@ class ImportController extends Controller
                     $msg = "<strong>Well done!</strong> The following ".$modelName." were saved:<br>";
                     foreach($saved as $k=>$v)
                     {
-                        $msg.= "<a target='_blank' href='/".strtolower($model->import->controller)."/view/$k'>$v</a><br>";
+                        $msg.= "<a target='_blank' href='/".$model->import->controller."/view/$k'>$v</a><br>";
                     }
                     Yii::app()->user->setFlash('success',$msg);
                 
@@ -268,7 +268,7 @@ class ImportController extends Controller
                     $this->redirect(array($model->import->returnUrl));
                 } else {
                    
-		            $this->render('//'.strtolower($model->import->controller).'/'.$model->import->importView, 
+		            $this->render('//'.$model->import->controller.'/'.$model->import->importView, 
 		                array('models'=>$instance));
                     app()->end();
                 }

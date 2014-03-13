@@ -17,6 +17,9 @@ $form = $this->beginWidget(
 );
 
 ?>
+
+<p><a class="u" href="<?php echo $this->createUrl($m->import->returnUrl);?>"><< back</a></p>
+
 <h1>Import <?php echo get_class($m);?></h1>
 
 <p><a class="u" target="_blank" href="template?model=<?php echo get_class($m);?>">View Template</a></p>
