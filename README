@@ -22,7 +22,8 @@ public function behaviors() {
             //name of model
             'model'=>'Deals',
             //name of the controller
-            'controller'=>'Deals',
+            //must appear how it appears in url
+            'controller'=>'deals',
             'fields'=>array(
                 'title'=>array('displayName'=>'Title', 'sample'=>'Oranges'),
                 'itemName'=>array('displayName'=>'Item Name', 'sample'=>'Oranges'),
