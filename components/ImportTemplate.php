@@ -17,12 +17,12 @@ class ImportTemplate extends CAction
 {
     public $model;
     public function run($model)
-	{
-	    $m = new $this->model;
-	    header("Content-type:text/csv");
+    {
+        $m = new $this->model;
+        header("Content-type:text/csv");
         header("Content-Disposition:attachment; filename='".$model."-import-template.csv'");  
         $out = $m->import->template;
         
         echo $out;
-	}
+    }
 }

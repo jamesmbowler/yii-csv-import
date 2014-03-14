@@ -18,13 +18,13 @@ class ImportModels extends CAction
     public $model;
     
     public function run()
-	{
-	    $m = new $this->model;
-	    $model = new ImportFile;
-	    $controller=$this->getController();
-	    $controller->render('import.views.import.upload', array(
+    {
+        $m = new $this->model;
+        $model = new ImportFile;
+        $controller=$this->getController();
+        $controller->render('import.views.import.upload', array(
             'model'=>$model,
             'm'=>$m
         ));
-	}
+    }
 }

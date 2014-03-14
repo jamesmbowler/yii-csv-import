@@ -20,14 +20,14 @@ class ImportFile extends CFormModel
     }
     
     
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'csv_file' => 'Please upload a CSV file',
-		);
-	}
-	
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels()
+    {
+        return array(
+            'csv_file' => 'Please upload a CSV file',
+        );
+    }
+    
 }

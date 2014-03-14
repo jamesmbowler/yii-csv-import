@@ -10,9 +10,9 @@ $form = $this->beginWidget(
         'htmlOptions' => array('enctype' => 'multipart/form-data'),
         'action'=>array('/import/import/upload'),
         'enableClientValidation'=>true,
-		'clientOptions'=>array(
-				'validateOnSubmit'=>true,
-					),
+        'clientOptions'=>array(
+                'validateOnSubmit'=>true,
+                    ),
     )
 );
 
@@ -33,9 +33,9 @@ echo $form->hiddenField($model, 'model', array('value'=>get_class($m)));
 echo $form->hiddenField($model, 'returnUrl', array('value'=>$m->import->returnUrl));
 ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Submit'); ?>
-	</div>
-	
-	<?php
+    <div class="row buttons">
+        <?php echo CHtml::submitButton('Submit'); ?>
+    </div>
+    
+    <?php
 $this->endWidget();
