@@ -13,7 +13,6 @@ $form = $this->beginWidget('booster.widgets.TbActiveForm',
 		),
     )
 );
-
 	?>
 
 	<p><a class="u" href="<?php echo $this->createUrl($m->import->returnUrl);?>"><< back</a></p>

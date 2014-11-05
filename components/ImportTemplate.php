@@ -15,7 +15,14 @@
  */
 class ImportTemplate extends CAction
 {
+	/**
+	 * model
+	 */ 
     public $model;
+    
+    /**
+     * run
+     */ 
     public function run($model)
     {
         $m = new $this->model;

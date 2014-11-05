@@ -115,7 +115,8 @@ class ImportController extends Controller
                     try{
                         $model[$i] = Yii::app()->getModule('import')->onBeforeShowForm($model[$i]);
                     } catch (Exception $e) {
-                        print_r($e);exit;
+						Yii::app()->user->setFlash('warning', $e->getMessage());
+                        $this->redirect($model[$i]->import->returnUrl);
                     }
                    
                     //if in non "form" mode, save models
@@ -162,7 +163,7 @@ class ImportController extends Controller
         {
             $msg = '';
             foreach($saved as $k=>$v){
-                $msg.= "<a target='_blank' href='/".$controller."/view/$k'>$v</a><br>";
+                $msg.= "<a target='_blank' style='color:white' href='/".$controller."/view/$k'>$v</a><br>";
             }
             Yii::app()->user->setFlash('success', 
             '<strong>'.count($saved).' Records saved.</strong><br>'.$msg);
