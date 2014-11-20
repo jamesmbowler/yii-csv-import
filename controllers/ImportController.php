@@ -198,7 +198,7 @@ class ImportController extends Controller
                     {
                         Throw new Exception('View '.$model->import->importView .' does not exist.');
                     }
-                    $this->render('//'.strtolower($model->import->controller).'/'.$model->import->importView, 
+                    $this->render('//'.$model->import->controller.'/'.$model->import->importView, 
                         array('models'=>$models));
                     app()->end();
                 }
