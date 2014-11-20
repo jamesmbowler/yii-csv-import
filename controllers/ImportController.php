@@ -122,7 +122,7 @@ class ImportController extends Controller
                     //if in non "form" mode, save models
                     if(!$form)
                     {
-                        if($model[$i]->saveUser())
+                        if($model[$i]->save())
                         {
                             //save array of Records saved, so we can check if they have images
                             $saved[$model[$i]->id] = $model[$i]->attributes[$titleField];
