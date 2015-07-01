@@ -122,24 +122,36 @@ class ImportController extends Controller
                     //if in non "form" mode, save models
                     if(!$form)
                     {
-                        if($model[$i]->save())
-                        {
-                            //save array of Records saved, so we can check if they have images
-                            $saved[$model[$i]->id] = $model[$i]->attributes[$titleField];
-                            $i++;
-                        } else {
-                            //if model doesn't save, show errors
-                            $error.="<b class='lp30' >Row $row: ".$model[$i]->$titleField."</b>
-                            <ul>";
-                            
-                            foreach($model[$i]->errors as $err){
-                                foreach($err as $e){
-                                    $error .="<li>".$e."</li>";
-                                }
-                            }
-                            $error.="</ul>";
-                            $i++;
-                        }
+						try{
+							if($model[$i]->save())
+							{
+								//save array of Records saved, so we can check if they have images
+								$saved[$model[$i]->id] = $model[$i]->attributes[$titleField];
+								$i++;
+							} else {
+								//if model doesn't save, show errors
+								$error.="<b class='lp30' >Row $row: ".$model[$i]->$titleField."</b>
+								<ul>";
+								
+								foreach($model[$i]->errors as $err){
+									foreach($err as $e){
+										$error .="<li>".$e."</li>";
+									}
+								}
+								$error.="</ul>";
+								$i++;
+							}
+						} catch (Exception $e){
+							//if model doesn't save, show errors
+							$error.="<b class='lp30' >Row $row: ".$model[$i]->$titleField."</b>
+							<ul>";
+							
+								$error .="<li>could not import</li>";
+								
+							
+							$error.="</ul>";
+							$i++;
+						}
                     } else {
                         $i++;
                     }
