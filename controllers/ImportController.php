@@ -32,14 +32,13 @@ class ImportController extends Controller
     public function import($form = false)
     {
         // check there are no errors
-        if($this->file['error']['csv_file'] != 0)
-        {
+        if($this->file['error']['csv_file'] != 0){
             throw Exception('there was a problem importing the file');
         }
         
         $name = $this->file['name']['csv_file'];
-        $ext = strtolower(end(explode('.', $this->file['name']['csv_file'])));
-        $type = $this->file['type']['csv_file'];
+        $ext = pathinfo($this->file['tmp_name']['csv_file'], PATHINFO_EXTENSION);
+        
         $tmpName = $this->file['tmp_name']['csv_file'];
         
         // necessary if a large csv file
