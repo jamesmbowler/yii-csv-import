@@ -120,6 +120,7 @@ class ImportController extends Controller
                     $saved[$model[$i]->id] = $model[$i]->attributes[$titleField];
                     $i++;
                   } else {
+                    //print_r($model[$i]->errors);exit;
                     //if model doesn't save, show errors
                     $error.="<b class='lp30' >Row $row: ".$model[$i]->$titleField."</b>
                     <ul>";
@@ -133,11 +134,12 @@ class ImportController extends Controller
                     $i++;
                   }
                 } catch (Exception $e){
+                  //print_r($e->getMessage());exit;
                   //if model doesn't save, show errors
                   $error.="<b class='lp30' >Row $row: ".$model[$i]->$titleField."</b>
                   <ul>";
 							
-                  $error .="<li>could not import</li>";
+                  $error .="<li>could not import: ".$e->getMessage()."</li>";
                   
                   $error.="</ul>";
                   $i++;
